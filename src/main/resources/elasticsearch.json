@@ -1,0 +1,11 @@
+{
+    "path" : {
+        "home" : "virtualVoteData"
+    },
+    "cluster" : {
+        "name" : "virtualVoteCluster"
+    },
+    "network" : {
+        "host" : "127.0.0.1"
+    }
+}

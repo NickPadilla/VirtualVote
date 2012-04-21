@@ -1,0 +1,29 @@
+LazyLoading is default but primitive, you end up having to get the value from the grid manuall so it gets
+populated.  This is best for performance reasons, however how do you deal with collections at the controller
+level?  Backend operations will benefit from this functionality, one line more work. 
+
+
+Should i use actual POJO's for the govtrackdata?  Not sure if it makes more sense to use pojo's or a mapping file that
+specifies the current contract, so we can easilly add more fields later and not need to update any database like structure.
+Part of the question is how much searching do we want to give?  Really tuned searches/reporting should require pojo's as opposed to
+just strings that represent some peice of data.  
+
+This looks good for a xml to pojo to json:
+
+https://github.com/FasterXML/jackson-xml-databind/wiki
+
+this is good for just straight xml to json:
+
+https://github.com/beckchr/staxon
+
+SURE GOING TO USE ELASTICSEARCH AS IT IS BETTER SUITED FOR THE JOB!.
+
+
+how are we going to handle properties?  need a scalable and easy solution.  Here is a good idea:
+
+http://pure-essence.net/2011/02/10/spring-loading-properties-from-database-with-a-twist/
+
+
+
+Follow this Hibernate-Validator issue and upgrade once 4.3 is released, it will have the class level validation 
+annotation bug fixed:  https://hibernate.onjira.com/browse/HV-524 

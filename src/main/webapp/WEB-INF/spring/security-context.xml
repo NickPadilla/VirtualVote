@@ -1,0 +1,41 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+						xmlns:beans="http://www.springframework.org/schema/beans"
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:schemaLocation="http://www.springframework.org/schema/beans
+								http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+								http://www.springframework.org/schema/security
+								http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	
+	<!-- use this to ensure you can use custom role names, otherwise Spring Security by default adds a ROLE_ prefix -->
+	<beans:bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+	    <beans:property name="rolePrefix" value="" />
+	</beans:bean>
+
+	<!-- Provide my custom authentication integration -->
+    <beans:bean id="customUserDetailsService" class="com.monstersoftwarellc.virtualvote.security.CustomUserDetailsService"/>
+	<beans:bean id="customAuthenticationProvider" class="com.monstersoftwarellc.virtualvote.security.CustomAuthenticationProvider"/>
+	
+	<!-- Register my AuthenticationProvider -->
+	<authentication-manager>
+		<authentication-provider ref="customAuthenticationProvider"/>
+	</authentication-manager>
+	
+	<!-- exclude restricted resources/directories - must be defined before the <http/> declaration-->
+	<http pattern="/resources" security="none" />		
+	
+	<!-- Security Settings -->
+	<http use-expressions="true">
+		<intercept-url pattern="/account/create" access="permitAll()"/>
+		<intercept-url pattern="/account/list" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/property/list" access="hasRole('ADMIN')" />
+		
+		<anonymous enabled="true" granted-authority="GUEST" username="guest"/>
+		<form-login />
+		<logout/>
+		<remember-me user-service-ref="customUserDetailsService" />
+	</http>
+	
+	<!-- Enables method level security with the use of @Secured -->
+	<global-method-security secured-annotations="enabled"/> 
+
+</beans:beans>

@@ -1,6 +1,4 @@
-*.class
+/target
+/VirtualVoteData
 
-# Package Files #
-*.jar
-*.war
-*.ear
+/virtualVoteData

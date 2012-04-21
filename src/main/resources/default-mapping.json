@@ -1,0 +1,22 @@
+{
+    "_default_" : {  
+    	"dynamic_templates" : [ 
+    		{
+		    	"nested_template" : {
+		        	"match" : "*",
+		    		"match_mapping_type" : "object",
+		    		"mapping" : {	
+		        		"type" : "nested"
+		        	}
+		        },
+		        "string_template" : {
+		        	"match" : "*",
+		    		"match_mapping_type" : "string",
+		    		"mapping" : {	
+		        		"index" : "not_analyzed"
+		        	}
+		        }
+		    }
+	    ]
+    }
+}

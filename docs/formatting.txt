@@ -1,0 +1,18 @@
+need to add this to the pom.xml to enable @DateTimeFormat 
+
+	    <properties>
+			<joda-time-version>2.0</joda-time-version>
+		</properties>
+        <!-- Formating Date/Calendars -->
+        <dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>${joda-time-version}</version>
+		</dependency>    
+		
+		
+To enable the formatting on the jsp page you need to use the field like this:
+
+<spring:eval expression="account.login.lastLoggedIn" /> 
+
+later spring plans on allowing EL to be intercepted by spEl for evaluations like formattings. 
